@@ -11,5 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: 'Login'
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{github.actor}}
+        password: ${{secrets.GITHUB_TOKEN}}
     - name: Build
-      run: docker build . --file Dockerfile --tag rsync-routes:latest
+      run: docker build . --file Dockerfile --tag ghcr.io/jnewb1/rsync-routes:latest
+    - name: Push
+      run: docker push ghcr.io/jnewb1/rsync-routes:latest
