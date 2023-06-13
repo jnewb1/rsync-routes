@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+RUN apt update && apt install cron
+
 ADD rsync.sh /opt/rsync.sh
 RUN chmod +x /opt/rsync.sh
 
