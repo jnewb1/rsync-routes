@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}/rsync
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
     - name: 'Login'
       uses: docker/login-action@v2
       with:
-        registry: ghcr.io
+        registry: ${{env.REGISTRY}}
         username: ${{github.actor}}
         password: ${{secrets.GITHUB_TOKEN}}
     
@@ -27,4 +27,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: ${{env.REGISTRY}}/${{env.IMAGE_NAME}}
