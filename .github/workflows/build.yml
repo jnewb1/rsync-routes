@@ -23,12 +23,12 @@ jobs:
         password: ${{secrets.GITHUB_TOKEN}}
     
     - name: Setup
-      uses: docker/metadata-action
+      uses: docker/metadata-action@v4
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     
     - name: Build and push Docker image
-      uses: docker/build-push-action
+      uses: docker/build-push-action@v1
       with:
         context: .
         push: true
