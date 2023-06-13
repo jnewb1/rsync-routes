@@ -1,1 +1,1 @@
-0 * * * * /opt/rsync.sh
+*/60 * * * * /opt/rsync.sh
