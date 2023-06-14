@@ -1,13 +1,14 @@
 #!/bin/sh
 
-if [[ `pgrep -f $0` != "$$" ]]; then
-    echo "Already running, skipping..."
-    exit
-fi
+# Ensure only 1 instance is created
+pid=/var/run/rsync.sh.pid
+trap "rm -f -- '$pid'" EXIT
+echo $$ > "$pid"
 
 echo "Running rsync..."
 
-ssh-keyscan ssh.comma.ai >> ~/.ssh/known_hosts
+ssh-keyscan "10.0.90.37" >> ~/.ssh/known_hosts
+ssh-keyscan "ssh.comma.ai" >> ~/.ssh/known_hosts
 
 RSYNC_CMD="rsync --bwlimit=5000 --progress -og --chown=99:100 --chmod=ugo=rwX"
 
