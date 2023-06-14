@@ -2,7 +2,7 @@
 
 # Ensure only 1 instance is created
 pid=/var/run/rsync.sh.pid
-trap "rm -f -- '$pid'" EXIT
+trap "rm -f '$pid'" EXIT
 echo $$ > "$pid"
 
 echo "Running rsync..."
