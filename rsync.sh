@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [[ `pgrep -f $0` != "$$" ]]; then
+    echo "Already running, skipping..."
+    exit
+fi
+
 echo "Running rsync..."
 
 ssh-keyscan ssh.comma.ai >> ~/.ssh/known_hosts
