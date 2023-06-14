@@ -1,1 +1,1 @@
-0 * * * * /opt/rsync.sh > /dev/stdout
+0 * * * * /opt/rsync.sh > /proc/1/fd/1 2>&1
