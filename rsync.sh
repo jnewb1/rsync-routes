@@ -19,5 +19,5 @@ do
     DONGLE_ID="$(ssh comma@$host 'cat /data/params/d/DongleId')"
 
     echo "rsyncing from comma@$host with dongle id $DONGLE_ID"
-    $RSYNC_CMD -r comma@$host:/data/media/0/realdata/ /mnt/routes/d9df6f87e8feff94/
+    $RSYNC_CMD -r comma@$host:/data/media/0/realdata/ /mnt/routes/$DONGLE_ID/
 done
