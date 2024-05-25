@@ -7,10 +7,17 @@ echo $$ > "$pid"
 
 echo "Running rsync..."
 
-ssh-keyscan "10.0.90.37" >> ~/.ssh/known_hosts
-ssh-keyscan "ssh.comma.ai" >> ~/.ssh/known_hosts
-
 RSYNC_CMD="rsync --size-only --bwlimit=5000 --progress -og --chown=99:100 --chmod=ugo=rwX"
 
-$RSYNC_CMD -r comma@10.0.90.37:/data/media/0/realdata/ /mnt/routes/d9df6f87e8feff94/
-$RSYNC_CMD -r comma-d9df6f87e8feff94:/data/media/0/realdata/ /mnt/routes/d9df6f87e8feff94/
+HOSTS="192.168.1.70,192.168.1.142"
+
+IFS=","
+for host in $HOSTS
+do
+    rm ~/.ssh/known_hosts
+    ssh-keyscan -H "$host" >> ~/.ssh/known_hosts
+    DONGLE_ID="$(ssh comma@$host 'cat /data/params/d/DongleId')"
+
+    echo "rsyncing from comma@$host with dongle id $DONGLE_ID"
+    $RSYNC_CMD -r comma@$host:/data/media/0/realdata/ /mnt/routes/d9df6f87e8feff94/
+done
