@@ -9,5 +9,5 @@ HOSTS="192.168.1.70,192.168.1.142"
 
 for host in $(echo $HOSTS | tr "," "\n")
 do
-    ./rsync.sh $host
+    /opt/rsync.sh $host
 done
