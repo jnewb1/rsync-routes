@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -x
 
 # Ensure only 1 instance is created
 pid=/var/run/rsync.sh.pid
