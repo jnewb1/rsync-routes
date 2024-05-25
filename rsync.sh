@@ -14,8 +14,7 @@ RSYNC_CMD="rsync --size-only --bwlimit=5000 --progress -og --chown=99:100 --chmo
 
 HOSTS="192.168.1.70,192.168.1.142"
 
-IFS=","
-for host in $HOSTS
+for host in $(echo $HOSTS | tr "," "\n")
 do
     DONGLE_ID="$(ssh $SSH_ARGS comma@$host 'cat /data/params/d/DongleId')"
 
