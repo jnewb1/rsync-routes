@@ -13,7 +13,7 @@ BWLIMIT="200000"
 HOSTS="192.168.1.70,192.168.1.142"
 
 SSH_ARGS="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-RSYNC_CMD="rsync --size-only --bwlimit=$BWLIMIT --progress -og --chown=99:100 --chmod=ugo=rwX"
+RSYNC_CMD="rsync --timeout=60 --contimeout=5 --size-only --bwlimit=$BWLIMIT --progress -og --chown=99:100 --chmod=ugo=rwX"
 
 for host in $(echo $HOSTS | tr "," "\n")
 do
