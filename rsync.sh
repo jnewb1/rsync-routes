@@ -7,7 +7,7 @@ echo "Running rsync..."
 BWLIMIT="200000"
 
 SSH_ARGS="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-RSYNC_CMD="rsync --timeout=60 --contimeout=5 --size-only --bwlimit=$BWLIMIT --progress -og --chown=99:100 --chmod=ugo=rwX"
+RSYNC_CMD="rsync --timeout=60 --size-only --bwlimit=$BWLIMIT --progress -og --chown=99:100 --chmod=ugo=rwX"
 
 host=$1
 
