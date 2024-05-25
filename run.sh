@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -xe
-
 # Ensure only 1 instance is created
 pid=/var/run/run.sh.pid
 trap "rm -f '$pid'" EXIT
