@@ -4,7 +4,7 @@ set -xe
 
 echo "Running rsync..."
 
-BWLIMIT="200000"
+BWLIMIT="5000"
 
 SSH_ARGS="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 RSYNC_CMD="rsync --timeout=60 --size-only --bwlimit=$BWLIMIT --progress -og --chown=99:100 --chmod=ugo=rwX"
