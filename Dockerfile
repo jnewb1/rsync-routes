@@ -1,15 +1,12 @@
 FROM ubuntu:20.04
 
-RUN apt update && apt install -y cron rsync openssh-client
+RUN apt update && apt install -y rsync openssh-client
 
 ADD rsync.sh /opt/rsync.sh
 ADD run.sh /opt/run.sh
 
-ADD cron /etc/cron.d/rsync
-RUN chmod 0644 /etc/cron.d/rsync
-
-RUN crontab /etc/cron.d/rsync
-
 WORKDIR /opt
 
-ENTRYPOINT ["cron", "-f"]
+ENV DELAY=3600
+
+CMD ["/bin/bash", "-c", "--" "while true; do /opt/run.sh && sleep $DELAY; done;" ]
