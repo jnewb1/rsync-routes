@@ -9,4 +9,4 @@ WORKDIR /opt
 
 ENV DELAY=3600
 
-CMD ["/bin/bash", "-c", "--" "while true; do /opt/run.sh && sleep $DELAY; done;" ]
+CMD ["/bin/bash", "-c", "--" "while true; do /opt/run.sh && echo 'sleeping for $DELAY' && sleep $DELAY; done;" ]
