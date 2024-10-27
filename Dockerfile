@@ -8,6 +8,4 @@ ADD entrypoint.sh /opt/entrypoint.sh
 
 WORKDIR /opt
 
-ENV DELAY=3600
-
 CMD ["/opt/entrypoint.sh"]

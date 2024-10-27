@@ -6,10 +6,8 @@ host=$1
 
 echo "running rsync on $host"
 
-BWLIMIT="5000"
-
 SSH_ARGS="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-RSYNC_CMD="rsync --timeout=60 --size-only --bwlimit=$BWLIMIT --progress -og --chown=99:100 --chmod=ugo=rwX"
+RSYNC_CMD="rsync --timeout=60 --size-only --bwlimit=${BWLIMIT:=0} --progress -og --chown=99:100 --chmod=ugo=rwX"
 
 DONGLE_ID="$(ssh $SSH_ARGS comma@$host 'cat /data/params/d/DongleId')"
 
