@@ -3,7 +3,7 @@
 while true
 do
     /opt/run.sh || true # ignore errors...
-    delay="${DELAY:=3600}"
-    echo 'sleeping for $delay'
-    sleep $delay
+    DELAY_DEFAULT="${DELAY:=3600}"
+    echo "sleeping for $DELAY_DEFAULT"
+    sleep $DELAY_DEFAULT
 done
